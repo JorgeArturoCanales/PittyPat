@@ -1,0 +1,165 @@
+body{
+  background-color: blueviolet;
+}
+
+.empezar{
+  background: crimson;
+  color: white;
+  background-color: crimson;
+  border-radius: 45px 45px 45px 45px;
+  padding: 10px 20px;
+  font-weight: 700;
+  margin-left: 45%;
+  border: none;
+  margin-top: 3px;
+}
+
+.empezar:hover{
+  background: #e63256;
+  color: rgb(135, 171, 192);
+  background-color: #e63256;
+  border-radius: 45px 45px 45px 45px;
+}
+
+.boton-redondo{
+  display: inline-block;
+  padding: 1.5em 1.5em;
+  background: rgb(0, 109, 45);
+  color: white;
+  border-radius: 2em;
+  border:none;
+  outline: 2px solid rgb(1, 83, 26);
+  outline-offset: 3px;
+  margin-left: 10px;
+  margin-top: 55px;
+}
+
+.boton-redondo:hover{
+  background: rgb(22, 199, 52);
+  color: rgb(0, 0, 0);
+}
+
+.boton-centro{
+  background: crimson;
+  color: white;
+  background-color: crimson;
+  border-radius: 45px 45px 45px 45px;
+  padding: 8px 10px;
+  font-weight: 700;
+  /* margin-left: 44.1%; */
+  border: none;
+  position: absolute;
+ /*  margin-top: -60px; */
+}
+
+.boton-centro:hover{
+  background: #e63256;
+  color: rgb(135, 171, 192);
+  background-color: #e63256;
+  border-radius: 45px 45px 45px 45px;
+}
+
+.superior{
+  display: flex;
+  justify-content: space-around;
+}
+
+.centro{
+  display: flex;
+  justify-content: center;
+}
+
+.pila {
+  display: flex;
+  margin-right: 10px;
+}
+
+.mazo1{
+  display: flex;
+  justify-content:  space-around;
+}
+
+.mazo2{
+  display: flex;
+}
+
+.inferior{
+  display: flex;
+  justify-content: space-around;
+}
+
+.espacio-carta{
+  border: 2px solid white;
+  width: 97px;
+  height: 149 px;
+  margin: 10px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.carta{
+  position: absolute;
+  border: 1px solid red;
+  border-radius: 7px;
+  height: 153px;
+}
+
+.carta-mazo{
+  position: relative;
+  height: 151px;
+  z-index: 1;
+}
+
+.pila-central{
+  position: absolute;
+}
+
+.sobreponer{
+  position: absolute;
+}
+
+.sobreponer1{
+  position: absolute;
+}
+/* fijarme en esto despues */
+.espacio-parejas{
+  border: 2px solid rgb(154, 182, 162);
+  width: 97px;
+  /* height: 581px; */
+  margin: 10px;
+  position: absolute; 
+  border-radius: 5px;
+  margin-top: 10%;
+}
+
+.espacio-nombre-empate{
+  align-content: center;
+  width: 600px;
+  height: 40px;
+  /* background-color: aquamarine; */
+  text-align: center;
+  margin-left: 22%;
+}
+
+/* si se mal, cambiar el % */
+.nombres{
+  font-family: Verdana;
+  color: white;
+  position: absolute;
+  margin-left: 7.3%; 
+}
+
+.texto{
+  font-family: Verdana;
+  color: rgb(39, 39, 39);
+}
+
+.swal2-title {
+  font-family: Verdana;
+  font-style: bold;
+}
+
+.swal2-popup {
+  font-size: 1rem !important;
+  font-family: Verdana;
+}

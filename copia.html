@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="sweetalert2.all.min.js"></script>
+</head>
+<body>
+    <div class="tablero">
+        <button class="empezar" id="btnIniciarJuego" onclick="iniciarJuego()">Iniciar Juego</button>
+        <div class="espacio-parejas" style="margin-left: 15%;" id="parejas1"></div>
+        <div class="espacio-parejas" style="margin-left: 75%;" id="parejas2"></div>
+        
+        <div class="superior">
+            <div class="mazo1" id="mazo1">
+                <div class="espacio-carta" id="carta-0"></div>
+                <div class="espacio-carta" id="carta-1"></div>
+                <div class="espacio-carta" id="carta-2"></div>
+                <div class="espacio-carta" id="carta-3"></div>
+                <div class="espacio-carta" id="carta-4"></div>
+            </div>
+        </div>
+        <div class="espacio-nombre-empate" style="margin-top: -4px;">
+            <h3 id="jugador2" class="nombres" style="margin-top: 3px; margin-bottom: 6px;">Jugador 2</h3>
+            <button class="boton-centro" style="margin-left: 17%;" id="btnDeclararEmpate" onclick="declararEmpate()">Declarar Empate</button>
+        </div>
+        
+        
+
+        <div class="centro">
+            <div class="pila">
+                <div class="espacio-carta">
+                    <div class ="carta-mazo" id="pila-inicial"></div>
+                  <!--  <div class="carta-mazo">
+                        <img src="img/reves.png" style="height: 151px; width: 96px;">
+                    </div>  -->
+                </div>
+                <div class="espacio-carta" id="seleccionada"></div>
+            </div>
+            <div>
+                <button class="boton-redondo" id="btnCambiarTurno" onclick="cambiarTurno()">Turno</button>
+            </div>
+        </div>
+
+        <div class="espacio-nombre-empate" style="margin-top: 20px;margin-bottom: -13px;">
+            <h3 id="jugador1" class="nombres" style="margin-bottom: -7px; margin-top: 2px;">Jugador 1</h3>
+            <button class="boton-centro" style="margin-left: 17%;" id="btnDeclararEmpate" onclick="declararEmpate()">Declarar Empate</button>
+        </div>
+
+        <div class="inferior">
+            <div class="mazo2" id="mazo2">
+                <div class="espacio-carta" id="carta-5"></div>
+                <div class="espacio-carta" id="carta-6"></div>
+                <div class="espacio-carta" id="carta-7"></div>
+                <div class="espacio-carta" id="carta-8"></div>
+                <div class="espacio-carta" id="carta-9"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="juego.js"></script>
+</body>
+</html>

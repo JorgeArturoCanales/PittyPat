@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="tablero">
+        <button class="empezar">Iniciar Juego</button>
+        <div class="superior">
+            <div class="mazo1">
+                <div class="espacio-carta" id="mazojugador1-0"></div>
+                <div class="espacio-carta" id="mazojugador1-1"></div>
+                <div class="espacio-carta" id="mazojugador1-2"></div>
+                <div class="espacio-carta" id="mazojugador1-3"></div>
+                <div class="espacio-carta" id="mazojugador1-4"></div>
+            </div>
+        </div>
+
+        <button class="boton-centro">Voltear Carta</button>
+
+        <div class="centro">
+            <div class="pila">
+                <div class="espacio-carta">
+                    <div class ="carta-mazo" id="pila-inicial"></div>
+                  <!--  <div class="carta-mazo">
+                        <img src="img/reves.png" style="height: 151px; width: 96px;">
+                    </div>  -->
+                </div>
+                <div class="espacio-carta" id="seleccionada"></div>
+            </div>
+        </div>
+
+        <div class="inferior">
+            <div class="mazo2">
+                <div class="espacio-carta" id="mazojugador2-0"></div>
+                <div class="espacio-carta" id="mazojugador2-1"></div>
+                <div class="espacio-carta" id="mazojugador2-2"></div>
+                <div class="espacio-carta" id="mazojugador2-3"></div>
+                <div class="espacio-carta" id="mazojugador2-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="juego.js"></script>
+</body>
+</html>
