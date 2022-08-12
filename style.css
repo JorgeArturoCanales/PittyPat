@@ -88,9 +88,18 @@ body{
   justify-content: space-around;
 }
 
-.espacio-carta{
+.espacio-carta-central{
   border: 2px solid white;
   width: 97px;
+  height: 149 px;
+  margin: 10px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.espacio-carta{
+  border: 2px solid white;
+  width: 101px;
   height: 149 px;
   margin: 10px;
   position: relative;
@@ -118,14 +127,9 @@ body{
   position: absolute;
 }
 
-.sobreponer1{
-  position: absolute;
-}
-/* fijarme en esto despues */
 .espacio-parejas{
   border: 2px solid rgb(154, 182, 162);
   width: 97px;
-  /* height: 581px; */
   margin: 10px;
   position: absolute; 
   border-radius: 5px;
@@ -141,7 +145,7 @@ body{
   margin-left: 22%;
 }
 
-/* si se mal, cambiar el % */
+/* si se ve mal, cambiar el % */
 .nombres{
   font-family: Verdana;
   color: white;
@@ -152,6 +156,12 @@ body{
 .texto{
   font-family: Verdana;
   color: rgb(39, 39, 39);
+}
+
+.texto-sweet{
+  font-family: Verdana;
+  color: rgb(51, 50, 50);
+  font-size:5px;
 }
 
 .swal2-title {
