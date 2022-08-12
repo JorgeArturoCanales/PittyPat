@@ -194,38 +194,40 @@ function cambiarTurno(){
 
     turno1 ? id = "mazo1" : id = "mazo2"
 
-    var miNodeList1, miNodeList2;
+    var miNodeList1, miNodeList2, miNodeList3, miNodeList4, num=0, num2=0;
 
-    for(var i=1; i<=cartasJugadores.length; i++){
-        if(turno1){
-            miNodeList1 = document.getElementById(id).querySelector('#carta-'+(5-i)).children;
-            
-            if(miNodeList1.length>0){
-                document.querySelector("#carta-"+(5-i)).firstChild.firstChild.src = "img/"+cartasJugador1[i-1].src+".png";
-            }
+    cartasJugadores.map(i => (
+        turno1
+            ? (miNodeList1 = document.getElementById(id).querySelector('#carta-'+(5-i)).children,
+                miNodeList3 = document.getElementById("mazo2").querySelector('#carta-'+(10-i)),
 
-            var miNodeList3 = document.getElementById("mazo2").querySelector('#carta-'+(10-i));
+                (miNodeList1.length>0
+                    ? document.querySelector("#carta-"+(5-i)).firstChild.firstChild.src = "img/"+cartasJugador1[i-1].src+".png"
+                    : console.log("linea 204")
+                ),
 
-            if(miNodeList3.children.length>0){
-                var num = 9-(i-1);
-                document.querySelector("#carta-"+num).firstChild.firstChild.src = "img/reves.png";
-            }  
-            
-        }else{
-            miNodeList2 = document.getElementById(id).querySelector('#carta-'+(10-i)).children;
+                (miNodeList3.children.length>0
+                    ? ((num = 9-(i-1)),
+                    document.querySelector("#carta-"+num).firstChild.firstChild.src = "img/reves.png")
+                    : console.log("linea 210")
+                )
+            )
+            :(miNodeList2 = document.getElementById(id).querySelector('#carta-'+(10-i)).children,
+                miNodeList4 = document.getElementById("mazo1").querySelector('#carta-'+(5-i)),
 
-            if(miNodeList2.length>0){
-                document.querySelector("#carta-"+(10-i)).firstChild.firstChild.src = "img/"+cartasJugador2[i-1].src+".png";
-            }
-
-            var miNodeList4 = document.getElementById("mazo1").querySelector('#carta-'+(5-i));
-
-            if(miNodeList4.children.length>0){
-                var num = 4-(i-1);
-                document.querySelector("#carta-"+num).firstChild.firstChild.src = "img/reves.png";
-            }
-        }
-    }
+                (miNodeList2.length>0
+                    ? document.querySelector("#carta-"+(10-i)).firstChild.firstChild.src = "img/"+cartasJugador2[i-1].src+".png"
+                    : console.log("linea 217")
+                ),
+                
+                (miNodeList4.children.length>0
+                    ? ((num2 = 4-(i-1)),
+                    document.querySelector("#carta-"+num2).firstChild.firstChild.src = "img/reves.png")
+                    : console.log("linea 223")
+                )
+            )
+        )
+    )
 
     turno1=!turno1;
 }
@@ -366,15 +368,16 @@ function intercambiarCartas(cartas1, cartas2){
     console.log(cartasJugadores.filter(c=> 
         (miNodeList[c-1].children.length>0 && miNodeList[c-1].firstChild.firstChild.dataset.id == cartas1.Id)
             ? (miNodeList[c-1].firstChild.firstChild.src = "img/"+cartas2.Src+".png",
-            miNodeList[c-1].firstChild.firstChild.dataset.src = cartas2.Src,
-            miNodeList[c-1].firstChild.firstChild.dataset.numero = cartas2.Num,
-            miNodeList[c-1].firstChild.firstChild.dataset.tipo = cartas2.Tipo,
-            miNodeList[c-1].firstChild.firstChild.dataset.color = cartas2.Color,
-            document.querySelector('#seleccionada').lastChild.lastChild.src = "img/"+cartas1.Src+".png",
-            document.querySelector('#seleccionada').lastChild.lastChild.dataset.src = cartas1.Src,
-            document.querySelector('#seleccionada').lastChild.lastChild.dataset.numero = cartas1.Num,
-            document.querySelector('#seleccionada').lastChild.lastChild.dataset.tipo = cartas1.Tipo,
-            document.querySelector('#seleccionada').lastChild.lastChild.dataset.color = cartas1.Color)
+                miNodeList[c-1].firstChild.firstChild.dataset.src = cartas2.Src,
+                miNodeList[c-1].firstChild.firstChild.dataset.numero = cartas2.Num,
+                miNodeList[c-1].firstChild.firstChild.dataset.tipo = cartas2.Tipo,
+                miNodeList[c-1].firstChild.firstChild.dataset.color = cartas2.Color,
+                document.querySelector('#seleccionada').lastChild.lastChild.src = "img/"+cartas1.Src+".png",
+                document.querySelector('#seleccionada').lastChild.lastChild.dataset.src = cartas1.Src,
+                document.querySelector('#seleccionada').lastChild.lastChild.dataset.numero = cartas1.Num,
+                document.querySelector('#seleccionada').lastChild.lastChild.dataset.tipo = cartas1.Tipo,
+                document.querySelector('#seleccionada').lastChild.lastChild.dataset.color = cartas1.Color
+            )
             : console.log("linea 380")
     ));
 }
@@ -400,17 +403,17 @@ function crearParejasDesechadas(carta){
             ? cantCartasEspacio = document.querySelector("#parejas2").children
             : cantCartasEspacio = document.querySelector("#parejas1").children
     }else{
-         var cantCartas1 = document.querySelector("#parejas1").children
+        var cantCartas1 = document.querySelector("#parejas1").children
 
-            cantCartas1.length/2 == 0
-                ? console.log("Par pareja2")
-                : cantCartasEspacio = document.querySelector("#parejas1").children
+        cantCartas1.length/2 == 0
+            ? console.log("Par pareja2")
+            : cantCartasEspacio = document.querySelector("#parejas1").children
 
         var cantCartas2 = document.querySelector("#parejas2").children
 
         cantCartas2.length/2 == 0
-                ? console.log("Par pareja1")
-                : cantCartasEspacio = document.querySelector("#parejas2").children
+            ? console.log("Par pareja1")
+            : cantCartasEspacio = document.querySelector("#parejas2").children
     }
 
     cartaHtml.style.top = cantCartasEspacio.length*30+"px";
@@ -445,5 +448,6 @@ function desecharCartasJugador(cartasRecibidas){
                 hijo = padre.firstChild,
                 padre.removeChild(hijo))
             : console.log("linea 467")
-    ));
+        )
+    );
 } 
