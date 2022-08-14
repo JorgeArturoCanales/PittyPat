@@ -2,7 +2,7 @@ var baraja = [];
 var cartasJugador1 = [], cartasJugador2 = [];
 var cartasDesechadas = [];
 var cartasJugadores= new Array(1,2,3,4,5);
-var nombreJugador1, nombreJugador2;
+var nombreJugador1, nombreJugador2, btnEmpatePresionado=0;
 var carta = {id:0, numero:0, tipo:"", color:"", espalda:true, src:""}
 const colores = {corazon: "rojo", diamante: "rojo", espada: "negro", trebol: "negro"};
 
@@ -79,6 +79,7 @@ function asignarCartas(cartasJugador){
         
 function declararEmpate(){
     var evento = window.event;
+    btnEmpatePresionado++;
 
     var idBotonPresionado = evento.target.id;
     document.querySelector('#'+idBotonPresionado).disabled = true;
@@ -87,7 +88,7 @@ function declararEmpate(){
     var estadoBotonEmpate1 = document.querySelector("#btnDeclararEmpate1").disabled;
     var estadoBotonEmpate2 = document.querySelector("#btnDeclararEmpate2").disabled;
 
-    estadoBotonEmpate1==estadoBotonEmpate2 ? mostrarEmpate() : console.log("No Han Aceptado los dos")
+    btnEmpatePresionado==2 ? mostrarEmpate() : console.log("No Han Aceptado los dos")
 }
 
 function crearCarta(carta){
@@ -210,8 +211,11 @@ function cambiarTurno(){
                     ? ((num = 9-(i-1)),
                     document.querySelector("#carta-"+num).firstChild.firstChild.src = "img/reves.png")
                     : console.log("linea 210")
-                )
+                ),
+                document.querySelector('#btnDeclararEmpate2').disabled=true,
+                document.querySelector('#btnDeclararEmpate1').disabled=false
             )
+            
             :(miNodeList2 = document.getElementById(id).querySelector('#carta-'+(10-i)).children,
                 miNodeList4 = document.getElementById("mazo1").querySelector('#carta-'+(5-i)),
 
@@ -224,7 +228,9 @@ function cambiarTurno(){
                     ? ((num2 = 4-(i-1)),
                     document.querySelector("#carta-"+num2).firstChild.firstChild.src = "img/reves.png")
                     : console.log("linea 223")
-                )
+                ),
+                document.querySelector('#btnDeclararEmpate2').disabled=false,
+                document.querySelector('#btnDeclararEmpate1').disabled=true
             )
         )
     )
@@ -321,10 +327,18 @@ function almacenarNombresJugadores(nombre1, nombre2){
 
 function comprobarGanador(){
     var cantCartasJugador1 = document.querySelector("#parejas2").children
-    cantCartasJugador1.length == 6 ? mostrarGanador(nombreJugador2, nombreJugador1) : console.log("linea 246")
+    cantCartasJugador1.length == 6 
+        ? (mostrarGanador(nombreJugador2, nombreJugador1)
+           , registrarEstadisticas(nombreJugador2)
+           , registrarEstadisticas(nombreJugador1)) 
+        : console.log("linea 334")
 
     var cantCartasJugador2 = document.querySelector("#parejas1").children
-    cantCartasJugador2.length == 6 ? mostrarGanador(nombreJugador1, nombreJugador2) : console.log("linea 400")
+    cantCartasJugador2.length == 6 
+        ? (mostrarGanador(nombreJugador1, nombreJugador2)
+           , registrarEstadisticas(nombreJugador1)
+           , registrarEstadisticas(nombreJugador2)) 
+        : console.log("linea 341")
 }
 
 function mostrarEmpate(){
@@ -365,7 +379,7 @@ function intercambiarCartas(cartas1, cartas2){
     var miNodeList = document.getElementById(cartas1.DivId).children;
     var num = 0;
 
-    console.log(cartasJugadores.filter(c=> 
+    cartasJugadores.filter(c=> 
         (miNodeList[c-1].children.length>0 && miNodeList[c-1].firstChild.firstChild.dataset.id == cartas1.Id)
             ? (miNodeList[c-1].firstChild.firstChild.src = "img/"+cartas2.Src+".png",
                 miNodeList[c-1].firstChild.firstChild.dataset.src = cartas2.Src,
@@ -378,8 +392,8 @@ function intercambiarCartas(cartas1, cartas2){
                 document.querySelector('#seleccionada').lastChild.lastChild.dataset.tipo = cartas1.Tipo,
                 document.querySelector('#seleccionada').lastChild.lastChild.dataset.color = cartas1.Color
             )
-            : console.log("linea 380")
-    ));
+            : console.log("linea 395")
+    )
 }
 
 function crearParejasDesechadas(carta){
@@ -441,13 +455,41 @@ function desecharCartasJugador(cartasRecibidas){
     var miNodeList = document.getElementById(cartasRecibidas.DivId).children;
     var elemento, padre, hijo;
 
-    console.log(cartasJugadores.filter(c=> 
+    cartasJugadores.filter(c=> 
         (miNodeList[c-1].children.length>0 && miNodeList[c-1].firstChild.firstChild.dataset.id == cartasRecibidas.Id)
             ? (elemento = miNodeList[c-1].id,
                 padre = document.querySelector('#'+cartasRecibidas.DivId).querySelector('[data-id="'+miNodeList[c-1].firstChild.firstChild.dataset.id+'"]').parentNode,
                 hijo = padre.firstChild,
                 padre.removeChild(hijo))
-            : console.log("linea 467")
-        )
-    );
+            : console.log("linea 464")
+    )
 } 
+
+function registrarEstadisticas(jugadorNombre){
+    var cantRegistros = localStorage.length;
+    var jugadoresRegistrados = JSON.parse(localStorage.getItem("jugador"))
+
+    var cantRegistros = new Array(localStorage.length);
+    for (let i = 0; i < cantRegistros.length; i++) {
+        cantRegistros[i]=i;
+    }
+
+    //pasando los registros de localstorage al array
+    cantRegistros.map(c=> cantRegistros[c]=JSON.parse(localStorage.getItem(""+(c+1))));
+
+    var flag=false;
+    var jugador = {id:localStorage.length+1, nombre: jugadorNombre, partidasJugadas:1}
+    var jugadorRegistrado= {id:0, nombre: "", partidasJugadas:0}
+
+    //si hay uno igual cambiar partidas jugadas
+    cantRegistros.map(c => 
+        (c.nombre == jugadorNombre 
+            ? (jugadorRegistrado = JSON.parse(localStorage.getItem(""+(c.id)))
+                , jugadorRegistrado.partidasJugadas= jugadorRegistrado.partidasJugadas + 1
+                , localStorage.setItem(""+c.id, JSON.stringify(jugadorRegistrado)
+                , flag=true)
+            )
+        : console.log("linea 489")))
+
+    flag==false ? localStorage.setItem(""+(localStorage.length+1), JSON.stringify(jugador)) : console.log("linea 494")
+}

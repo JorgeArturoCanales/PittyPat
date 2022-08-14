@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartas</title>
+    <title>Pitty Pat - Partida En Curso</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/icono.png" type="image/x-icon">
     <script src="sweetalert2.all.min.js"></script>
 </head>
+
 <body>
     <div class="tablero">
         <button class="empezar" id="btnIniciarJuego" onclick="iniciarJuego()">Iniciar Juego</button>
@@ -28,15 +30,11 @@
             <button class="boton-centro" style="margin-left: 17%;" id="btnDeclararEmpate1" disabled onclick="declararEmpate()">Declarar Empate</button>
         </div>
         
-        
 
         <div class="centro">
             <div class="pila">
                 <div class="espacio-carta-central">
                     <div class ="carta-mazo" id="pila-inicial"></div>
-                  <!--  <div class="carta-mazo">
-                        <img src="img/reves.png" style="height: 151px; width: 96px;">
-                    </div>  -->
                 </div>
                 <div class="espacio-carta-central" id="seleccionada"></div>
             </div>

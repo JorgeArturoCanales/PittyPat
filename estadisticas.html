@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Jugadores</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/icono.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="columna">
+        <div class="encabezado-tabla">Nombre</div>
+        <div class="encabezado-tabla">Partidas</div>
+    </div>
+
+    <div class="columna">
+        <div class="celda" id="nombre">===========</div>
+        <div class="celda" id="jugada">===========</div>
+    </div>
+
+</body>
+
+<script>
+    var cantRegistros = new Array(localStorage.length);
+    
+    for (let i = 0; i < cantRegistros.length; i++) {
+        cantRegistros[i]=i;
+    }
+
+    cantRegistros.map(c=> cantRegistros[c]=JSON.parse(localStorage.getItem(""+(c+1))));
+
+    cantRegistros.map(c => 
+        (document.querySelector('#nombre').appendChild(crearNombre(c.nombre))
+        , (document.querySelector('#jugada').appendChild(crearPartidasJugadas(c.partidasJugadas))
+        , console.log("OOO"))));
+
+    function crearNombre(nombre){
+        const nombreHTML = document.createElement("div");
+        nombreHTML.classList.add("celda");
+        nombreHTML.textContent = nombre;
+
+        return nombreHTML;
+    }
+
+    function crearPartidasJugadas(partidas){
+        const partidasHTML = document.createElement("div");
+        partidasHTML.classList.add("celda");
+        partidasHTML.textContent = partidas;
+
+        return partidasHTML;
+    }
+
+</script>
+
+</html>

@@ -173,3 +173,41 @@ body{
   font-size: 1rem !important;
   font-family: Verdana;
 }
+
+/*Parte de la tabla*/
+/* body{
+  background-color: blueviolet;
+} */
+
+.celda{
+  width: 150px;
+  height: 40px;
+  margin-right: -1px;
+  position: relative;
+  text-align: center;
+  padding-bottom: 10;
+  padding-top: 20px;
+  background-color: #ffffff;
+  font-family: Verdana;
+  border-bottom: 2px solid #19616F;
+
+}
+
+.columna{
+  display: flex;
+  justify-content:center ;
+}
+
+.encabezado-tabla{
+  width: 150px;
+  height: 40px;
+ 
+  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 20px;
+  background-color: #19616F;
+  font-family: Verdana;
+  color:#ffffff;
+  display: flex;
+  justify-content:center ;
+}
